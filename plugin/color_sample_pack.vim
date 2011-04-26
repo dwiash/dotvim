@@ -27,7 +27,6 @@ amenu T&hemes.&New.&Dark.BlackSea :colo blacksea<CR>
 amenu T&hemes.&New.&Dark.Colorer :colo colorer<CR>
 amenu T&hemes.&New.&Dark.Darkbone :colo darkbone<CR>
 amenu T&hemes.&New.&Dark.DarkZ :colo darkz<CR>
-amenu T&hemes.&New.&Dark.Dwiash :colo dwiash<CR>
 amenu T&hemes.&New.&Dark.Herald :colo herald<CR>
 amenu T&hemes.&New.&Dark.Jammy :colo jammy<CR>
 amenu T&hemes.&New.&Dark.Kellys :colo kellys<CR>

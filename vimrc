@@ -4,20 +4,20 @@ set number
 set ruler
 syntax on
 
-set background=dark
-
 " Set encoding
 set encoding=utf-8
 
-" Enable mouse
-set mouse=a
-
 " Whitespace stuff
-set nowrap
+" overide tab settings
 set tabstop=4
 set shiftwidth=4
+
+set nowrap
+"set tabstop=2
+"set shiftwidth=2
 set softtabstop=2
-set list listchars=tab:\ \ ,trail:·
+"set expandtab
+set list listchars=tab:――,trail:·,eol:¬,extends:❯,precedes:❮,nbsp:%
 
 " Searching
 set hlsearch
@@ -27,7 +27,7 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 " Status bar
 set laststatus=2
@@ -38,8 +38,9 @@ set laststatus=2
 set noequalalways
 
 " NERDTree configuration
-let NERDTreeIgnore=['\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
+let NERDTreeChDirMode=2
+map <F9> :NERDTreeToggle<CR>
 
 " Command-T configuration
 let g:CommandTMaxHeight=20
@@ -49,6 +50,7 @@ map <Leader><Leader> :ZoomWin<CR>
 
 " CTags
 map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+map <C-\> :tnext<CR>
 
 " Remember last location in file
 if has("autocmd")
@@ -58,7 +60,7 @@ endif
 
 function s:setupWrapping()
   set wrap
-  set wm=2
+  set wrapmargin=2
   set textwidth=72
 endfunction
 
@@ -68,10 +70,7 @@ function s:setupMarkup()
 endfunction
 
 " make uses real tabs
-au FileType make                                     set noexpandtab
-
-" JSON file will be treathened as JavaScript file
-au BufRead,BufNewFile *.{json}    set ft=javascript
+au FileType make set noexpandtab
 
 " Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
@@ -79,10 +78,13 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set f
 " md, markdown, and mk are markdown and define buffer-local preview
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
+" add json syntax highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
-" make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python  set tabstop=4 textwidth=79
+" make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -114,19 +116,37 @@ vmap <C-Down> ]egv
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
 
+" gist-vim defaults
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+elseif has("unix")
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+
 " Use modeline overrides
 set modeline
 set modelines=10
 
 " Default color scheme
-color tango
+color desert
 
 " Directories for swp files
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
+" Turn off jslint errors by default
+let g:JSLintHighlightErrorLine = 0
+
 " MacVIM shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
+
+" % to bounce from do to end etc.
+runtime! macros/matchit.vim
+
+" Show (partial) command in the status line
+set showcmd
 
 " Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
@@ -134,21 +154,33 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 
+" == CUSTOMIZATION BEGIN ===========================================
+
+set background=dark
+
+" Enable mouse
+set mouse=a
+
+
+
+" JSON file will be treathened as JavaScript file
+au BufRead,BufNewFile *.{json}    set ft=javascript
+
+
+
 set foldmethod=marker
 
 hi User1 ctermbg=red ctermfg=white cterm=bold term=bold
 	
-set statusline=\ %y\ %t\ %1*%m%*%=%l/%L,\ %v
-
+set statusline=\ %y\ %t\ %{fugitive#statusline()}\ %1*%m%*%=%l/%L,\ %v
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 set nuw=5
 
 
-map <C-n> :tabnew<CR>
+nmap <Leader>n :tabnew<CR>
+nmap <Leader>q :quit<CR>
 "set t_Co=256
-
-
-
 
 
 
@@ -236,4 +268,26 @@ let g:CommandTMaxHeight=10
 call togglebg#map("<F5>")
 
 
+
+" GUNDO!!
 nnoremap <F4> :GundoToggle<CR>
+let g:gundo_width = 30
+let g:gundo_right = 1
+let g:gundo_help = 0
+
+
+
+
+let g:github_user='dwiash'
+let g:github_tokken='d5dcb9a3355b999b8b8beb7f37b8cbac'
+
+
+map <Leader>d :Gdiff<CR>
+
+
+
+
+" EASYMOTION
+let g:EasyMotion_leader_key = '<Leader>m'
+
+let g:solarized_visibility="low"

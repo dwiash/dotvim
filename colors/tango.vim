@@ -32,11 +32,10 @@ hi IncSearch    cterm=none ctermfg=yellow ctermbg=green
 
 " Window Elements
 hi StatusLine   guifg=#eeeeec guibg=#4e9a06 gui=bold
-hi StatusLine   ctermfg=white ctermbg=green cterm=none
+hi StatusLine   ctermfg=white ctermbg=green cterm=bold
 hi StatusLineNC guifg=#d3d7df guibg=#4e9a06
-hi StatusLineNC ctermfg=white ctermbg=darkgreen
+hi StatusLineNC ctermfg=lightgray ctermbg=darkgreen
 hi VertSplit    guifg=#eeeeec guibg=#eeeeec
-hi VertSplit    ctermfg=white ctermbg=white
 hi Folded       guifg=#eeeeec guibg=#75507b
 hi Folded       ctermfg=white ctermbg=magenta
 hi Visual       guifg=#d3d7cf guibg=#4e9a06
@@ -60,7 +59,7 @@ hi Identifier   ctermfg=darkgreen
 hi PreProc      guifg=#cc0000
 hi PreProc      ctermfg=darkred
 hi Comment      guifg=#06989a gui=italic
-hi Comment      ctermfg=black cterm=none
+hi Comment      ctermfg=cyan cterm=none
 hi Type         guifg=#d3d7cf gui=bold
 hi Type         ctermfg=gray cterm=bold
 hi Special      guifg=#75507b
@@ -77,8 +76,3 @@ hi DiffDelete   guibg=bg
 hi DiffDelete   ctermfg=gray ctermbg=none cterm=none
 hi DiffText     guifg=fg guibg=#c4a000 gui=none
 hi DiffText     ctermfg=gray ctermbg=yellow cterm=none
-
-" Other
-hi LineNR		ctermfg=black cterm=bold
-hi TabLine		cterm=none
-hi User1 ctermbg=red ctermfg=white
