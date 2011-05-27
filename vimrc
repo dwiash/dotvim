@@ -17,7 +17,6 @@ set nowrap
 "set shiftwidth=2
 set softtabstop=2
 "set expandtab
-set list listchars=tab:――,trail:·,eol:¬,extends:❯,precedes:❮,nbsp:%
 
 " Searching
 set hlsearch
@@ -130,7 +129,7 @@ set modeline
 set modelines=10
 
 " Default color scheme
-color desert
+color default
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -156,7 +155,6 @@ endif
 
 " == CUSTOMIZATION BEGIN ===========================================
 
-set background=dark
 
 " Enable mouse
 set mouse=a
@@ -257,7 +255,7 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-set showtabline=2
+set showtabline=1
 
 
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
@@ -284,10 +282,16 @@ let g:github_tokken='d5dcb9a3355b999b8b8beb7f37b8cbac'
 
 map <Leader>d :Gdiff<CR>
 
-
+map <F6> :set nu!<CR>
+map <F7> :set rnu!<CR>
 
 
 " EASYMOTION
 let g:EasyMotion_leader_key = '<Leader>m'
 
 let g:solarized_visibility="low"
+
+
+" tab management
+map <C-Tab> gt
+map <C-S-Tab> gT

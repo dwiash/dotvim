@@ -239,14 +239,18 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 set guioptions-=m
+set guioptions-=e
+
+"set guifont=Envy\ Code\ R\ VS\ 10
 set guifont=Monaco\ 9
-set linespace=2
+set linespace=0
 
 " Set initial windows dimmension
-set lines=35 columns=150
+set lines=40 columns=100
 
 " Default gui color scheme
 colorscheme solarized
+set background=light
 
 
 
@@ -298,7 +302,8 @@ endfunction
 
 set guitablabel=%{GuiTabLabel()}
 
-set showtabline=2
+set showtabline=1
 noremap <RightRelease> "+y<RightRelease>
 
 
+"set list listchars=tab:――,trail:·,eol:¬,extends:❯,precedes:❮,nbsp:%
